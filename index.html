@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> 
+            Color Game
+        </title>
+        <link rel="stylesheet" href="./index.css"/>
+    </head>
+    <body onload="newgame()">
+        <div id="header">
+            <h2>The Great</h2>
+            <h1 id="header2">rgb(xxx,xxx,xxx)</h1>
+            <h2>Guessing Game</h2> 
+        </div> 
+        <div id="container">
+        <div class="tile" id="1">title 1 </div>
+        <div class="tile" id="2">title 2</div> 
+        </div>
+
+        <script>
+            var t1 = document.getElementById("1");
+            var t2 = document.getElementById("2");
+
+            var x;
+            var CorrectColor;
+
+            function getRandomColor() {
+                var letters = '0123456789ABCDEF';
+                var color = '#';
+                for (var i = 0; i < 6; i++) {
+                 color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            }
+
+            function newgame() {
+                t1.style.background = getRandomColor();
+                t2.style.background = getRandomColor();
+
+                x = Math.floor(Math.random() * 2 + 1);
+                if (x == 1) CorrectColor = t1.style.background;
+                else CorrectColor = t2.style.background;
+            
+                console.log(x);
+                console.log(CorrectColor);
+                document.getElementById("header2").innerHTML = CorrectColor;
+            }
+            t1.addEventListener("click", function() {
+                if (t1.style.background == CorrectColor) {
+                    t2.style.background = CorrectColor;
+                    document.getElementById("header").style.background = CorrectColor;
+                }
+                else {
+                    t1.style.background = "black";
+                }
+            })
+            t2.addEventListener("click", function() {
+                if (t2.style.background == CorrectColor) {
+                    t1.style.background = CorrectColor;
+                    document.getElementById("header").style.background = CorrectColor;
+                }
+                else {
+                    t2.style.background = "black";
+                }
+            })
+        </script>
+    </body>
+</html>
