@@ -1,26 +1,108 @@
 * {
-    padding: 0px;
-    margin: 0px;
+  margin: 0;
+  padding: 0;
+  text-align: center;
 }
-#header{
-    background-color: darkorange;
-    height: 30vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+
+#header {
+  background-color: lightpink;
+  height: 30vh;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Yusei Magic', sans-serif;
 }
 
 #container {
-    height: 70vh;
-    background-color: black;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+  background-color: black;
+  height: 70vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .tile {
-    height: 200px;
-    width: 200px;
-    background-color: blue;
+  height: 25%;
+  width: 25%;
+  background-color: aliceblue;
+  display: flex;
+  justify-content: center;
+  line-height: 1000%;
+}
+
+#A {
+  position: absolute;
+  top: 35%;
+  left: 5%;
+  font-family: 'Potta One', cursive;
+}
+
+#B {
+  position: absolute;
+  top: 35%;
+  left: 37.5%;
+  font-family: 'Potta One', cursive;
+}
+
+#C {
+  position: absolute;
+  top: 35%;
+  left: 70%;
+  font-family: 'Potta One', cursive;
+}
+
+#X {
+  position: absolute;
+  top: 65%;
+  left: 5%;
+  font-family: 'Hachi Maru Pop', cursive;
+}
+
+#Y {
+  position: absolute;
+  top: 65%;
+  left: 37.5%;
+  font-family: 'Hachi Maru Pop', cursive;
+}
+
+#Z {
+  position: absolute;
+  top: 65%;
+  left: 70%;
+  font-family: 'Hachi Maru Pop', cursive;
+}
+
+#game {
+  position: absolute;
+  left: 80%;
+  top: 0%;
+ height: 30vh;
+ width: 20%;
+ display: flex;
+ justify-content: center;
+}
+
+#again {
+  position: static;
+ height: 30vh;
+ display: flex;
+ justify-content: center;
+ width: 100%;
+}
+
+.button {
+  width: 90%;
+  height: 40%;
+  margin: auto;
+  position: absolute;
+  top: 10%;
+}
+
+#tries {
+  position: absolute;
+  top: 60%;
+  width: 100%;
+  text-align: left;
 }

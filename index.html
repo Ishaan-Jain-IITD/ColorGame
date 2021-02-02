@@ -1,68 +1,173 @@
 <!DOCTYPE html>
+
 <html>
-    <head>
-        <title> 
-            Color Game
-        </title>
-        <link rel="stylesheet" href="./index.css"/>
-    </head>
-    <body onload="newgame()">
-        <div id="header">
-            <h2>The Great</h2>
-            <h1 id="header2">rgb(xxx,xxx,xxx)</h1>
-            <h2>Guessing Game</h2> 
-        </div> 
-        <div id="container">
-        <div class="tile" id="1">title 1 </div>
-        <div class="tile" id="2">title 2</div> 
-        </div>
+  <head>
+    <title>Color Game</title>
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&family=Potta+One&family=Yusei+Magic&display=swap" rel="stylesheet">
+  </head>
+  <body onload="newGame()">
+    <div id="header">
+      <h2>The Great</h2>
+      <h2>Color Guessing Game <br> by its RGB code</h2>
+      <h1 id="header-clue">(xxx,xxx,xxx)</h1>
+    </div>
+    <div id="game">
+      <div id="again">
+         <button class="button" onClick="window.location.reload();">
+             Play Again
+          </button>
+      </div>
+      <div id="tries">
+       <h2> No. Of Tries = </h2>
+       <h1 id="count">0</h1>
+      </div>
+    </div>
+    <div id="container">
+        <div class="tile" id="A"><font size="22">Color A</font></div>
+        <div class="tile" id="B"><font size="22">Color B</font></div>
+        <div class="tile" id="C"><font size="22">Color C</font></div> 
+        <div class="tile" id="X"><font size="22">Color X</font></div>
+        <div class="tile" id="Y"><font size="22">Color Y</font></div>
+        <div class="tile" id="Z"><font size="22">Color Z</font></div>
+    </div>
 
-        <script>
-            var t1 = document.getElementById("1");
-            var t2 = document.getElementById("2");
+    <script>
+      var t1 = document.getElementById("A");
+      var t2 = document.getElementById("B");
+      var t3 = document.getElementById("C");
+      var t4 = document.getElementById("X");
+      var t5 = document.getElementById("Y");
+      var t6 = document.getElementById("Z");
+      var x;
+      var correctColor;
+      var count = 0;
+      var displaycount = document.getElementById("count");
 
-            var x;
-            var CorrectColor;
+      function getRandomColor() {
+        var letters = "0123456789ABCDEF";
+        var color = "#";
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
 
-            function getRandomColor() {
-                var letters = '0123456789ABCDEF';
-                var color = '#';
-                for (var i = 0; i < 6; i++) {
-                 color += letters[Math.floor(Math.random() * 16)];
-                }
-                return color;
-            }
+      function newGame() {
+        t1.style.background = getRandomColor();
+        t2.style.background = getRandomColor();
+        t3.style.background = getRandomColor();
+        t4.style.background = getRandomColor();
+        t5.style.background = getRandomColor();
+        t6.style.background = getRandomColor();
 
-            function newgame() {
-                t1.style.background = getRandomColor();
-                t2.style.background = getRandomColor();
+        x = Math.floor(Math.random() * 6 + 1);
 
-                x = Math.floor(Math.random() * 2 + 1);
-                if (x == 1) CorrectColor = t1.style.background;
-                else CorrectColor = t2.style.background;
-            
-                console.log(x);
-                console.log(CorrectColor);
-                document.getElementById("header2").innerHTML = CorrectColor;
-            }
-            t1.addEventListener("click", function() {
-                if (t1.style.background == CorrectColor) {
-                    t2.style.background = CorrectColor;
-                    document.getElementById("header").style.background = CorrectColor;
-                }
-                else {
-                    t1.style.background = "black";
-                }
-            })
-            t2.addEventListener("click", function() {
-                if (t2.style.background == CorrectColor) {
-                    t1.style.background = CorrectColor;
-                    document.getElementById("header").style.background = CorrectColor;
-                }
-                else {
-                    t2.style.background = "black";
-                }
-            })
-        </script>
-    </body>
+        if (x == 1) correctColor = t1.style.background;
+          else if (x == 2) correctColor = t2.style.background;
+          else if (x == 3) correctColor = t3.style.background;
+          else if (x == 4) correctColor = t4.style.background;
+          else if (x == 5) correctColor = t5.style.background;
+        else correctColor = t6.style.background;
+        /* console.log(x);
+        console.log(correctColor); */
+
+        document.getElementById("header-clue").innerHTML = " Color :-: " +correctColor;
+      }
+
+      t1.addEventListener("click", function () {
+        if (t1.style.background == correctColor) {
+          t2.style.background = correctColor;
+          t3.style.background = correctColor;
+          t4.style.background = correctColor;
+          t5.style.background = correctColor;
+          t6.style.background = correctColor;
+          document.getElementById("header").style.background = correctColor;
+          document.getElementById("header").innerHTML = '<span style="font-weight: bold; font-size: 200px "> Correct </font>'
+        }
+        else {
+          count +=1 ;
+          displaycount.innerHTML = count;
+          t1.style.background = "black";
+        }
+      }, {once: true} );
+
+      t2.addEventListener("click", function () {
+        if (t2.style.background == correctColor) {
+          t1.style.background = correctColor;
+          t3.style.background = correctColor;
+          t4.style.background = correctColor;
+          t5.style.background = correctColor;
+          t6.style.background = correctColor;
+          document.getElementById("header").style.background = correctColor;
+          document.getElementById("header").innerHTML = '<span style="font-weight: bold; font-size: 200px"> Correct </font>'
+        } else {
+          count +=1 ;
+          displaycount.innerHTML = count;
+          t2.style.background = "black";
+        }
+      }, {once: true});
+      t3.addEventListener("click", function () {
+        if (t3.style.background == correctColor) {
+          t1.style.background = correctColor;
+          t2.style.background = correctColor;
+          t4.style.background = correctColor;
+          t5.style.background = correctColor;
+          t6.style.background = correctColor;
+          document.getElementById("header").style.background = correctColor;
+          document.getElementById("header").innerHTML = '<span style="font-weight: bold; font-size: 200px"> Correct </font>'
+        } else {
+          count +=1 ;
+          displaycount.innerHTML = count;
+          t3.style.background = "black";
+        }
+      }, {once: true} );
+      t4.addEventListener("click", function () {
+        if (t4.style.background == correctColor) {
+          t1.style.background = correctColor;
+          t2.style.background = correctColor;
+          t3.style.background = correctColor;
+          t5.style.background = correctColor;
+          t6.style.background = correctColor;
+          document.getElementById("header").style.background = correctColor;
+          document.getElementById("header").innerHTML = '<span style="font-weight: bold; font-size: 200px"> Correct </font>'
+        } else {
+          count +=1 ;
+          displaycount.innerHTML = count;
+          t4.style.background = "black";
+        }
+      }, {once: true} );
+      t5.addEventListener("click", function () {
+        if (t5.style.background == correctColor) {
+          t1.style.background = correctColor;
+          t2.style.background = correctColor;
+          t3.style.background = correctColor;
+          t4.style.background = correctColor;
+          t6.style.background = correctColor;
+          document.getElementById("header").style.background = correctColor;
+          document.getElementById("header").innerHTML = '<span style="font-weight: bold; font-size: 200px"> Correct </font>'
+        } else {
+          count +=1 ;
+          displaycount.innerHTML = count;
+          t5.style.background = "black";
+        }
+      }, {once: true} );
+      t6.addEventListener("click", function () {
+        if (t6.style.background == correctColor) {
+          t1.style.background = correctColor;
+          t2.style.background = correctColor;
+          t3.style.background = correctColor;
+          t4.style.background = correctColor;
+          t5.style.background = correctColor;
+          document.getElementById("header").style.background = correctColor;
+          document.getElementById("header").innerHTML = '<span style="font-weight: bold; font-size: 200px"> Correct </font>'
+        } else {
+          count +=1 ;
+          displaycount.innerHTML = count;
+          t6.style.background = "black";
+        }
+      }, {once: true} );
+    </script>
+  </body>
 </html>
